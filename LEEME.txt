@@ -1,0 +1,15 @@
+PORTAL DE EVIDENCIAS - INSTRUCCIONES
+
+1. Descarga y descomprime la carpeta.
+2. Abre la carpeta Portal_de_Evidencias en Visual Studio Code.
+3. Abre index.html en el navegador. Recomendado: instala la extensión Live Server y selecciona "Open with Live Server".
+4. Crea una cuenta desde "Crear cuenta" e inicia sesión.
+5. Usa el menú lateral para agregar evidencias, perfil, formación, actividades y proyectos.
+
+ARCHIVOS:
+- index.html: estructura de las pantallas.
+- css/estilos.css: colores, tamaños y diseño adaptable.
+- js/app.js: registro, inicio de sesión y funciones.
+
+IMPORTANTE:
+Esta es una versión escolar de demostración. Guarda los datos en el almacenamiento local del navegador (localStorage/sessionStorage), y los archivos seleccionados se guardan como datos locales del navegador. No es una autenticación segura ni una base de datos en internet. No uses contraseñas reales ni documentos personales sensibles. Para publicar el sistema y usarlo con varios dispositivos, se debe conectar un backend y una base de datos segura, por ejemplo Firebase con reglas de seguridad.

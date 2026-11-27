@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal de Evidencias estudiantiles">
+  <title>Portal de Evidencias</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" data-view="login">
+      <span class="brand-icon">🎓</span>
+      <span>Portal de <b>Evidencias</b></span>
+    </a>
+    <button id="menuBtn" class="menu-btn" aria-label="Abrir menú">☰</button>
+    <nav id="mainNav">
+      <button data-view="login" class="nav-link">Inicio</button>
+      <button data-view="registro" class="nav-link">Crear cuenta</button>
+      <button data-view="dashboard" class="nav-link auth-only hidden">Mi portal</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="loginView" class="view">
+      <div class="hero">
+        <div>
+          <span class="eyebrow">UNIVERSIDAD · PORTAL ACADÉMICO</span>
+          <h1>Tus evidencias, <span>en un solo lugar.</span></h1>
+          <p>Organiza tus documentos, formación académica, proyectos y fotografías escolares de manera sencilla.</p>
+          <div class="hero-points"><span>✓ Fácil de usar</span><span>✓ Organizado</span><span>✓ Acceso personal</span></div>
+        </div>
+        <div class="auth-card">
+          <div class="card-symbol">🎓</div>
+          <h2>Bienvenido</h2>
+          <p class="muted">Ingresa a tu cuenta para continuar</p>
+          <form id="loginForm">
+            <label for="loginUser">Nombre de usuario / correo</label>
+            <input id="loginUser" type="text" placeholder="Escribe tu usuario o correo" required>
+            <label for="loginPassword">Contraseña</label>
+            <input id="loginPassword" type="password" placeholder="Tu contraseña" required>
+            <button class="btn primary full" type="submit">ENTRAR AL SISTEMA</button>
+          </form>
+          <p class="small center">¿No tienes cuenta? <button class="text-btn" data-view="registro">Regístrate aquí</button></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="registroView" class="view hidden">
+      <div class="form-card narrow">
+        <div class="card-symbol">👤</div>
+        <h1>Crear cuenta</h1>
+        <p class="muted">Registra tus datos para acceder al Portal de Evidencias.</p>
+        <form id="registerForm" class="form-grid">
+          <div class="field full-field"><label for="regName">Nombre completo</label><input id="regName" required placeholder="Nombre y apellidos"></div>
+          <div class="field"><label for="regEmail">Correo institucional</label><input id="regEmail" type="email" required placeholder="correo@universidad.edu"></div>
+          <div class="field"><label for="regPhone">Número de teléfono</label><input id="regPhone" type="tel" placeholder="Teléfono"></div>
+          <div class="field"><label for="regFolio">Matrícula / folio</label><input id="regFolio" required placeholder="Tu matrícula"></div>
+          <div class="field"><label for="regPassword">Contraseña</label><input id="regPassword" type="password" minlength="6" required placeholder="Mínimo 6 caracteres"></div>
+          <div class="field full-field"><label for="regConfirm">Confirmar contraseña</label><input id="regConfirm" type="password" required placeholder="Repite tu contraseña"></div>
+          <button class="btn primary full-field" type="submit">CREAR CUENTA</button>
+        </form>
+        <p class="small center">¿Ya tienes cuenta? <button class="text-btn" data-view="login">Inicia sesión</button></p>
+      </div>
+    </section>
+
+    <section id="dashboardView" class="view hidden">
+      <div class="welcome-row">
+        <div><span class="eyebrow">ESPACIO PERSONAL</span><h1>Hola, <span id="welcomeName">estudiante</span></h1><p class="muted">Administra tus evidencias académicas.</p></div>
+        <button id="logoutBtn" class="btn outline">Cerrar sesión</button>
+      </div>
+      <div class="stats">
+        <article class="stat-card"><span>📁</span><div><b id="totalCount">0</b><small>Evidencias guardadas</small></div></article>
+        <article class="stat-card"><span>⏳</span><div><b id="pendingCount">0</b><small>Pendientes de revisión</small></div></article>
+        <article class="stat-card"><span>✓</span><div><b id="verifiedCount">0</b><small>Verificadas</small></div></article>
+      </div>
+      <div class="dashboard-grid">
+        <aside class="side-card">
+          <h3>Menú de navegación</h3>
+          <button class="side-link active" data-section="evidencias">📂 Mis evidencias</button>
+          <button class="side-link" data-section="subir">⬆️ Subir evidencia</button>
+          <button class="side-link" data-section="perfil">👤 Mi perfil</button>
+          <button class="side-link" data-section="formacion">🎓 Formación académica</button>
+          <button class="side-link" data-section="extra">📜 Formación extracurricular</button>
+          <button class="side-link" data-section="proyectos">💡 Proyectos</button>
+          <button class="side-link" data-section="fotos">🖼️ Eventos y fotografías</button>
+        </aside>
+
+        <div class="content-card">
+          <section id="evidenciasSection" class="portal-section">
+            <div class="section-heading"><div><h2>Mis evidencias</h2><p class="muted">Consulta los documentos que has registrado.</p></div><button class="btn primary" data-section="subir">+ Subir evidencia</button></div>
+            <div class="toolbar"><input id="searchEvidence" placeholder="Buscar evidencia..."><select id="filterStatus"><option value="todos">Todos los estados</option><option value="Pendiente">Pendiente</option><option value="Verificado">Verificado</option></select></div>
+            <div id="evidenceList" class="evidence-list"><div class="empty">Todavía no has agregado evidencias.</div></div>
+          </section>
+
+          <section id="subirSection" class="portal-section hidden">
+            <h2>Subir evidencia</h2><p class="muted">Selecciona un documento o fotografía para guardarlo en tu portal.</p>
+            <form id="uploadForm" class="upload-box">
+              <label for="evidenceTitle">Nombre de la evidencia</label><input id="evidenceTitle" required placeholder="Ej. Certificado de preparatoria">
+              <div class="form-grid">
+                <div class="field"><label for="evidenceType">Tipo de evidencia</label><select id="evidenceType"><option>Documento académico</option><option>Curso</option><option>Congreso</option><option>Proyecto</option><option>Fotografía</option><option>Otro</option></select></div>
+                <div class="field"><label for="evidenceDate">Fecha</label><input id="evidenceDate" type="date" required></div>
+              </div>
+              <label for="evidenceFile">Seleccionar archivo (PDF, JPG o PNG)</label>
+              <input id="evidenceFile" type="file" accept=".pdf,.jpg,.jpeg,.png" required>
+              <p class="small muted">Para esta versión de demostración, los archivos se guardan en este navegador.</p>
+              <button class="btn primary" type="submit">GUARDAR EVIDENCIA</button>
+            </form>
+          </section>
+
+          <section id="perfilSection" class="portal-section hidden">
+            <h2>Mi perfil</h2><p class="muted">Mantén actualizada tu información personal.</p>
+            <form id="profileForm" class="form-grid">
+              <div class="field full-field"><label>Nombre completo</label><input id="profileName" required></div>
+              <div class="field"><label>Correo electrónico</label><input id="profileEmail" type="email" required></div>
+              <div class="field"><label>Teléfono</label><input id="profilePhone" type="tel"></div>
+              <div class="field"><label>Matrícula / folio</label><input id="profileFolio"></div>
+              <div class="field"><label>CURP (opcional)</label><input id="profileCurp" maxlength="18"></div>
+              <button class="btn primary full-field" type="submit">Guardar cambios</button>
+            </form>
+          </section>
+
+          <section id="formacionSection" class="portal-section hidden">
+            <h2>Formación académica</h2><p class="muted">Registra tus estudios y documentos escolares.</p>
+            <form id="academicForm" class="form-grid">
+              <div class="field"><label>Nivel de estudios</label><select id="academicLevel"><option>Preparatoria</option><option>TSU</option><option>Ingeniería</option></select></div>
+              <div class="field"><label>Institución</label><input id="academicSchool" placeholder="Nombre de la institución" required></div>
+              <div class="field"><label>Año</label><input id="academicYear" type="number" min="1990" max="2100" placeholder="2026"></div>
+              <div class="field"><label>Documento</label><select id="academicDoc"><option>Certificado</option><option>Título</option><option>Carta pasante</option></select></div>
+              <button class="btn primary full-field">Agregar formación</button>
+            </form><div id="academicList" class="simple-list"></div>
+          </section>
+
+          <section id="extraSection" class="portal-section hidden">
+            <h2>Formación extracurricular</h2><p class="muted">Agrega cursos, congresos o actividades como Semana TI.</p>
+            <form id="extraForm" class="form-grid">
+              <div class="field"><label>Nombre de la actividad</label><input id="extraName" required placeholder="Nombre del curso o evento"></div>
+              <div class="field"><label>Tipo</label><select id="extraType"><option>Curso</option><option>Congreso</option><option>Semana TI</option><option>Otro</option></select></div>
+              <div class="field"><label>Fecha</label><input id="extraDate" type="date" required></div>
+              <div class="field"><label>Materia (opcional)</label><input id="extraSubject" placeholder="Materia relacionada"></div>
+              <button class="btn primary full-field">Agregar actividad</button>
+            </form><div id="extraList" class="simple-list"></div>
+          </section>
+
+          <section id="proyectosSection" class="portal-section hidden">
+            <h2>Proyectos por asignatura</h2><p class="muted">Registra tus proyectos, descripción y enlace.</p>
+            <form id="projectForm" class="form-grid">
+              <div class="field"><label>Nombre del proyecto</label><input id="projectName" required></div>
+              <div class="field"><label>Asignatura</label><input id="projectSubject" required></div>
+              <div class="field full-field"><label>Descripción</label><textarea id="projectDescription" rows="3" required></textarea></div>
+              <div class="field full-field"><label>Enlace (opcional)</label><input id="projectLink" type="url" placeholder="https://..."></div>
+              <button class="btn primary full-field">Agregar proyecto</button>
+            </form><div id="projectList" class="simple-list"></div>
+          </section>
+
+          <section id="fotosSection" class="portal-section hidden">
+            <h2>Eventos y fotografías</h2><p class="muted">Las fotografías se agregan desde el apartado “Subir evidencia”, seleccionando tipo Fotografía.</p>
+            <div id="photoList" class="photo-grid"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <div id="toast" class="toast" role="status"></div>
+  </main>
+  <footer>Portal de Evidencias · Proyecto académico · Desarrollo de Aplicaciones Móviles</footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
